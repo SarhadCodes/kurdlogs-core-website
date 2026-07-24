@@ -3,18 +3,20 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-
-const links = [
-  { to: '/', label: 'Product' },
-  { to: '/about', label: 'About' },
-  { to: '/team', label: 'Team' },
-  { to: '/faq', label: 'FAQ' },
-  { to: '/docs', label: 'Docs' },
-];
+import { LOCALES, useI18n } from '@/i18n';
 
 export default function SiteHeader() {
+  const { t, locale, setLocale } = useI18n();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const links = [
+    { to: '/', label: t.nav.product },
+    { to: '/about', label: t.nav.about },
+    { to: '/team', label: t.nav.team },
+    { to: '/faq', label: t.nav.faq },
+    { to: '/docs', label: t.nav.docs },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -42,7 +44,7 @@ export default function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <Link to="/" className="font-display text-lg font-bold tracking-tight text-foreground">
           KurdLogs
-          <span className="ml-1.5 font-medium text-muted-foreground">Core</span>
+          <span className="ms-1.5 font-medium text-muted-foreground">Core</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -63,9 +65,31 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center md:flex">
+        <div className="hidden items-center gap-2 md:flex">
+          <div
+            className="inline-flex items-center rounded-md border border-border bg-background/60 p-0.5"
+            role="group"
+            aria-label={t.nav.language}
+          >
+            {LOCALES.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setLocale(item.id)}
+                className={cn(
+                  'rounded px-2.5 py-1 text-xs font-medium transition-colors',
+                  locale === item.id
+                    ? 'bg-secondary text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+                aria-pressed={locale === item.id}
+              >
+                {item.nativeLabel}
+              </button>
+            ))}
+          </div>
           <Button asChild size="sm">
-            <Link to="/docs">Install guide</Link>
+            <Link to="/docs">{t.nav.installGuide}</Link>
           </Button>
         </div>
 
@@ -74,7 +98,7 @@ export default function SiteHeader() {
           variant="ghost"
           size="icon"
           className="md:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X /> : <Menu />}
@@ -100,9 +124,31 @@ export default function SiteHeader() {
                 {link.label}
               </NavLink>
             ))}
+            <div
+              className="mt-2 inline-flex w-full items-center rounded-md border border-border p-0.5"
+              role="group"
+              aria-label={t.nav.language}
+            >
+              {LOCALES.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setLocale(item.id)}
+                  className={cn(
+                    'flex-1 rounded px-3 py-2 text-sm font-medium transition-colors',
+                    locale === item.id
+                      ? 'bg-secondary text-foreground'
+                      : 'text-muted-foreground'
+                  )}
+                  aria-pressed={locale === item.id}
+                >
+                  {item.nativeLabel}
+                </button>
+              ))}
+            </div>
             <div className="mt-3">
               <Button asChild className="w-full" onClick={() => setOpen(false)}>
-                <Link to="/docs">Install guide</Link>
+                <Link to="/docs">{t.nav.installGuide}</Link>
               </Button>
             </div>
           </nav>

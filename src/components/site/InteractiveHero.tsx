@@ -3,8 +3,12 @@ import { ArrowRight } from 'lucide-react';
 import DotGrid from '@/components/DotGrid';
 import { Button } from '@/components/ui/button';
 import HeroGlobe from '@/components/site/HeroGlobe';
+import { useI18n } from '@/i18n';
+import { cn } from '@/lib/utils';
 
 export default function InteractiveHero() {
+  const { t, dir } = useI18n();
+
   return (
     <section className="relative min-h-[100dvh] overflow-hidden bg-[#070708]">
       <div className="absolute inset-0 z-0">
@@ -29,16 +33,30 @@ export default function InteractiveHero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[48%] bg-gradient-to-r from-background via-background/70 to-transparent"
+        className={cn(
+          'pointer-events-none absolute inset-y-0 z-[1] w-[48%]',
+          dir === 'rtl'
+            ? 'right-0 bg-gradient-to-l from-background via-background/70 to-transparent'
+            : 'left-0 bg-gradient-to-r from-background via-background/70 to-transparent'
+        )}
       />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-36 bg-gradient-to-t from-background to-transparent"
       />
 
-      {/* Live WebGL globe — sits above the field, drag to spin */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-[5] flex w-full items-center justify-center sm:w-[56%] sm:justify-end lg:w-[54%]">
-        <div className="pointer-events-auto aspect-square w-[min(88vw,520px)] animate-globe-in sm:w-[min(54vw,620px)] lg:w-[min(50vw,680px)] sm:translate-x-[4%] lg:translate-x-[6%]">
+      <div
+        className={cn(
+          'pointer-events-none absolute inset-y-0 z-[5] flex w-full items-center justify-center sm:w-[56%] lg:w-[54%]',
+          dir === 'rtl' ? 'left-0 sm:justify-start' : 'right-0 sm:justify-end'
+        )}
+      >
+        <div
+          className={cn(
+            'pointer-events-auto aspect-square w-[min(88vw,520px)] animate-globe-in sm:w-[min(54vw,620px)] lg:w-[min(50vw,680px)]',
+            dir === 'rtl' ? 'sm:-translate-x-[4%] lg:-translate-x-[6%]' : 'sm:translate-x-[4%] lg:translate-x-[6%]'
+          )}
+        >
           <HeroGlobe className="h-full w-full animate-globe-float" />
         </div>
       </div>
@@ -50,20 +68,17 @@ export default function InteractiveHero() {
             <span className="mt-1 block font-semibold text-white/65 sm:mt-2">Core</span>
           </p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70 sm:text-xl">
-            Self-hosted broadcast control for operators who need channels, playlists, and continuous
-            TV — without the noise.
+            {t.hero.tagline}
           </p>
           <div className="mt-10">
             <Button asChild size="lg">
               <Link to="/docs">
-                Install KurdLogs
-                <ArrowRight />
+                {t.hero.cta}
+                <ArrowRight className="rtl:rotate-180" />
               </Link>
             </Button>
           </div>
-          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-white/35">
-            Drag the globe · move your cursor
-          </p>
+          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-white/35">{t.hero.hint}</p>
         </div>
       </div>
     </section>

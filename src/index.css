@@ -37,6 +37,22 @@
     font-feature-settings: 'ss01', 'cv11';
   }
 
+  html.locale-ckb body,
+  html.locale-ckb .font-sans {
+    font-family: 'Noto Sans Arabic', Manrope, system-ui, sans-serif;
+    font-feature-settings: normal;
+  }
+
+  html.locale-ckb .font-display {
+    font-family: 'Noto Sans Arabic', Manrope, system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  html.locale-ckb .uppercase {
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+
   ::selection {
     background: #fff;
     color: #0a0a0b;
