@@ -84,7 +84,7 @@ export default function SiteHeader() {
                 )}
                 aria-pressed={locale === item.id}
               >
-                {item.nativeLabel}
+                {item.id === 'en' ? 'English' : 'کوردی'}
               </button>
             ))}
           </div>
@@ -142,7 +142,7 @@ export default function SiteHeader() {
                   )}
                   aria-pressed={locale === item.id}
                 >
-                  {item.nativeLabel}
+                  {item.id === 'en' ? 'English' : 'کوردی'}
                 </button>
               ))}
             </div>
