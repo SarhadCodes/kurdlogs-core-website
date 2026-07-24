@@ -5,12 +5,11 @@ import { Separator } from '@/components/ui/separator';
 import { PageHero, Section, SectionHeading } from '@/components/site/Section';
 import {
   installCommandCodes,
-  PANEL_URL,
   REPO_PAGE_URL,
   REPO_URL,
   requirementHrefs,
 } from '@/data/site';
-import { formatMessage, useI18n } from '@/i18n';
+import { useI18n } from '@/i18n';
 
 function CodeBlock({ label, code, copyLabel, copiedLabel }: { label: string; code: string; copyLabel: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false);
@@ -43,7 +42,6 @@ function CodeBlock({ label, code, copyLabel, copiedLabel }: { label: string; cod
 
 export default function DocsPage() {
   const { t } = useI18n();
-  const panelHost = PANEL_URL.replace(/^https?:\/\//, '');
 
   return (
     <>
@@ -176,11 +174,6 @@ export default function DocsPage() {
           </p>
           <p className="mt-4 text-sm text-muted-foreground">{t.docs.changePassword}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild>
-              <a href={PANEL_URL} target="_blank" rel="noreferrer">
-                {formatMessage(t.docs.openPanel, { host: panelHost })}
-              </a>
-            </Button>
             <Button asChild variant="outline">
               <a href={REPO_PAGE_URL} target="_blank" rel="noreferrer">
                 {t.docs.githubRepo}
