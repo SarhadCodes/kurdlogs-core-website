@@ -3,12 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { LOCALES, useI18n } from '@/i18n';
+import { AVAILABLE_LOCALES, useI18n } from '@/i18n';
 
 export default function SiteHeader() {
   const { t, locale, setLocale } = useI18n();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const showLanguageSwitcher = AVAILABLE_LOCALES.length > 1;
 
   const links = [
     { to: '/', label: t.nav.product },
@@ -66,28 +67,30 @@ export default function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <div
-            className="inline-flex items-center rounded-md border border-border bg-background/60 p-0.5"
-            role="group"
-            aria-label={t.nav.language}
-          >
-            {LOCALES.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setLocale(item.id)}
-                className={cn(
-                  'rounded px-2.5 py-1 text-xs font-medium transition-colors',
-                  locale === item.id
-                    ? 'bg-secondary text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-                aria-pressed={locale === item.id}
-              >
-                {item.id === 'en' ? 'English' : 'کوردی'}
-              </button>
-            ))}
-          </div>
+          {showLanguageSwitcher ? (
+            <div
+              className="inline-flex items-center rounded-md border border-border bg-background/60 p-0.5"
+              role="group"
+              aria-label={t.nav.language}
+            >
+              {AVAILABLE_LOCALES.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setLocale(item.id)}
+                  className={cn(
+                    'rounded px-2.5 py-1 text-xs font-medium transition-colors',
+                    locale === item.id
+                      ? 'bg-secondary text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                  aria-pressed={locale === item.id}
+                >
+                  {item.id === 'en' ? 'English' : 'کوردی'}
+                </button>
+              ))}
+            </div>
+          ) : null}
           <Button asChild size="sm">
             <Link to="/docs">{t.nav.installGuide}</Link>
           </Button>
@@ -124,28 +127,30 @@ export default function SiteHeader() {
                 {link.label}
               </NavLink>
             ))}
-            <div
-              className="mt-2 inline-flex w-full items-center rounded-md border border-border p-0.5"
-              role="group"
-              aria-label={t.nav.language}
-            >
-              {LOCALES.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setLocale(item.id)}
-                  className={cn(
-                    'flex-1 rounded px-3 py-2 text-sm font-medium transition-colors',
-                    locale === item.id
-                      ? 'bg-secondary text-foreground'
-                      : 'text-muted-foreground'
-                  )}
-                  aria-pressed={locale === item.id}
-                >
-                  {item.id === 'en' ? 'English' : 'کوردی'}
-                </button>
-              ))}
-            </div>
+            {showLanguageSwitcher ? (
+              <div
+                className="mt-2 inline-flex w-full items-center rounded-md border border-border p-0.5"
+                role="group"
+                aria-label={t.nav.language}
+              >
+                {AVAILABLE_LOCALES.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setLocale(item.id)}
+                    className={cn(
+                      'flex-1 rounded px-3 py-2 text-sm font-medium transition-colors',
+                      locale === item.id
+                        ? 'bg-secondary text-foreground'
+                        : 'text-muted-foreground'
+                    )}
+                    aria-pressed={locale === item.id}
+                  >
+                    {item.id === 'en' ? 'English' : 'کوردی'}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             <div className="mt-3">
               <Button asChild className="w-full" onClick={() => setOpen(false)}>
                 <Link to="/docs">{t.nav.installGuide}</Link>

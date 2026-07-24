@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 import { messages, type Messages } from './messages';
-import { LOCALE_STORAGE_KEY, type Locale } from './types';
+import { LOCALE_STORAGE_KEY, CKB_ENABLED, type Locale } from './types';
 
 type I18nContextValue = {
   locale: Locale;
@@ -20,6 +20,7 @@ type I18nContextValue = {
 const I18nContext = createContext<I18nContextValue | null>(null);
 
 function readStoredLocale(): Locale {
+  if (!CKB_ENABLED) return 'en';
   try {
     const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
     if (stored === 'en' || stored === 'ckb') return stored;
@@ -35,6 +36,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   );
 
   const setLocale = useCallback((next: Locale) => {
+    if (!CKB_ENABLED && next === 'ckb') return;
     setLocaleState(next);
     try {
       localStorage.setItem(LOCALE_STORAGE_KEY, next);
@@ -43,22 +45,34 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const dir: 'ltr' | 'rtl' = locale === 'ckb' ? 'rtl' : 'ltr';
-  const t = messages[locale];
+  useEffect(() => {
+    if (!CKB_ENABLED && locale !== 'en') {
+      setLocaleState('en');
+      try {
+        localStorage.setItem(LOCALE_STORAGE_KEY, 'en');
+      } catch {
+        /* ignore */
+      }
+    }
+  }, [locale]);
+
+  const activeLocale: Locale = CKB_ENABLED ? locale : 'en';
+  const dir: 'ltr' | 'rtl' = activeLocale === 'ckb' ? 'rtl' : 'ltr';
+  const t = messages[activeLocale];
 
   useEffect(() => {
     const root = document.documentElement;
-    root.lang = locale === 'ckb' ? 'ckb' : 'en';
+    root.lang = activeLocale === 'ckb' ? 'ckb' : 'en';
     root.dir = dir;
-    root.classList.toggle('locale-ckb', locale === 'ckb');
+    root.classList.toggle('locale-ckb', activeLocale === 'ckb');
     document.title = t.meta.title;
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', t.meta.description);
-  }, [locale, dir, t.meta.title, t.meta.description]);
+  }, [activeLocale, dir, t.meta.title, t.meta.description]);
 
   const value = useMemo(
-    () => ({ locale, setLocale, dir, t }),
-    [locale, setLocale, dir, t]
+    () => ({ locale: activeLocale, setLocale, dir, t }),
+    [activeLocale, setLocale, dir, t]
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

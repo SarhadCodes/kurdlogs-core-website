@@ -78,7 +78,6 @@ export default function InteractiveHero() {
               </Link>
             </Button>
           </div>
-          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-white/35">{t.hero.hint}</p>
         </div>
       </div>
     </section>
