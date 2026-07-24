@@ -39,18 +39,24 @@
 
   html.locale-ckb body,
   html.locale-ckb .font-sans {
-    font-family: 'Noto Sans Arabic', Manrope, system-ui, sans-serif;
+    font-family: Vazirmatn, 'Noto Sans Arabic', Manrope, system-ui, sans-serif;
     font-feature-settings: normal;
+    line-height: 1.75;
   }
 
   html.locale-ckb .font-display {
-    font-family: 'Noto Sans Arabic', Manrope, system-ui, sans-serif;
+    font-family: Vazirmatn, Manrope, system-ui, sans-serif;
     letter-spacing: 0;
+    line-height: 1.45;
   }
 
   html.locale-ckb .uppercase {
     text-transform: none;
     letter-spacing: 0.04em;
+  }
+
+  html.locale-ckb {
+    font-size: 16.5px;
   }
 
   ::selection {

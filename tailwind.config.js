@@ -41,8 +41,8 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['Manrope', 'Noto Sans Arabic', 'system-ui', 'sans-serif'],
-        display: ['Syne', 'Noto Sans Arabic', 'Manrope', 'system-ui', 'sans-serif'],
+        sans: ['Manrope', 'Vazirmatn', 'system-ui', 'sans-serif'],
+        display: ['Syne', 'Vazirmatn', 'Manrope', 'system-ui', 'sans-serif'],
         mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
       },
       keyframes: {
