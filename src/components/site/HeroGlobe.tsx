@@ -181,13 +181,18 @@ export default function HeroGlobe({ className }: HeroGlobeProps) {
         style={{ left: '50%', top: '50%', opacity: 0 }}
       >
         <div className="relative">
-          <div className="absolute inset-0 -m-2 rounded-sm bg-white/25 blur-md" />
-          <img
-            src="/images/kurdistan-flag.png"
-            alt="Kurdistan"
-            className="relative h-7 w-auto rounded-[2px] object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.35),0_4px_14px_rgba(0,0,0,0.55)] sm:h-8 lg:h-9"
-            draggable={false}
-          />
+          <div className="relative">
+            <div className="absolute inset-0 -m-2 rounded-sm bg-white/25 blur-md" />
+            <img
+              src="/images/kurdistan-flag.png"
+              alt=""
+              className="relative h-7 w-auto rounded-[2px] object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.35),0_4px_14px_rgba(0,0,0,0.55)] sm:h-8 lg:h-9"
+              draggable={false}
+            />
+          </div>
+          <span className="absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap text-[11px] font-semibold tracking-[0.08em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)] sm:text-xs lg:text-sm">
+            Kurdistan
+          </span>
         </div>
       </div>
     </div>
