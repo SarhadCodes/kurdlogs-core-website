@@ -29,16 +29,22 @@ export default function InteractiveHero() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/35 via-transparent to-background"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-transparent to-background"
       />
+      {/* Desktop: protect copy on the text side */}
       <div
         aria-hidden
         className={cn(
-          'pointer-events-none absolute inset-y-0 z-[1] w-[48%]',
+          'pointer-events-none absolute inset-y-0 z-[1] hidden w-[48%] sm:block',
           dir === 'rtl'
             ? 'right-0 bg-gradient-to-l from-background via-background/70 to-transparent'
             : 'left-0 bg-gradient-to-r from-background via-background/70 to-transparent'
         )}
+      />
+      {/* Mobile: keep the brand readable over the globe */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[6] bg-[linear-gradient(180deg,rgba(7,7,8,0.55)_0%,rgba(7,7,8,0.2)_38%,rgba(7,7,8,0.75)_72%,rgba(7,7,8,1)_100%)] sm:hidden"
       />
       <div
         aria-hidden
@@ -47,30 +53,37 @@ export default function InteractiveHero() {
 
       <div
         className={cn(
-          'pointer-events-none absolute inset-y-0 z-[5] flex w-full items-center justify-center sm:w-[56%] lg:w-[54%]',
-          dir === 'rtl' ? 'left-0 sm:justify-start' : 'right-0 sm:justify-end'
+          'pointer-events-none absolute z-[5] flex',
+          // Mobile: sit the globe upper-right as atmosphere, not competing with the title
+          'inset-x-0 top-[4.5rem] h-[min(58vw,280px)] items-start justify-center',
+          // Desktop: side panel
+          'sm:inset-y-0 sm:top-auto sm:right-0 sm:h-auto sm:w-[56%] sm:items-center sm:justify-end lg:w-[54%]',
+          dir === 'rtl' && 'sm:right-auto sm:left-0 sm:justify-start'
         )}
       >
         <div
           className={cn(
-            'pointer-events-auto aspect-square w-[min(88vw,520px)] animate-globe-in sm:w-[min(54vw,620px)] lg:w-[min(50vw,680px)]',
-            dir === 'rtl' ? 'sm:-translate-x-[4%] lg:-translate-x-[6%]' : 'sm:translate-x-[4%] lg:translate-x-[6%]'
+            'pointer-events-auto aspect-square animate-globe-in',
+            'w-[min(70vw,300px)] translate-x-[18%] opacity-50',
+            'sm:w-[min(54vw,620px)] sm:translate-x-[4%] sm:translate-y-0 sm:opacity-100',
+            'lg:w-[min(50vw,680px)] lg:translate-x-[6%]',
+            dir === 'rtl' && 'translate-x-[-18%] sm:-translate-x-[4%] lg:-translate-x-[6%]'
           )}
         >
           <HeroGlobe className="h-full w-full animate-globe-float" />
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-center px-5 pb-20 pt-28 sm:px-8">
+      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:justify-center sm:px-8 sm:pb-20">
         <div className="max-w-xl animate-fade-up pointer-events-none lg:max-w-2xl [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
-          <p className="font-display text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
+          <p className="font-display text-[2.75rem] font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
             KurdLogs
             <span className="mt-1 block font-semibold text-white/65 sm:mt-2">Core</span>
           </p>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70 sm:text-xl">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/70 sm:mt-6 sm:max-w-xl sm:text-xl">
             {t.hero.tagline}
           </p>
-          <div className="mt-10">
+          <div className="mt-8 sm:mt-10">
             <Button asChild size="lg">
               <Link to="/docs">
                 {t.hero.cta}
