@@ -29,9 +29,8 @@ export default function InteractiveHero() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-transparent to-background"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/35 via-transparent to-background"
       />
-      {/* Desktop: protect copy on the text side */}
       <div
         aria-hidden
         className={cn(
@@ -41,46 +40,46 @@ export default function InteractiveHero() {
             : 'left-0 bg-gradient-to-r from-background via-background/70 to-transparent'
         )}
       />
-      {/* Mobile: keep the brand readable over the globe */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[6] bg-[linear-gradient(180deg,rgba(7,7,8,0.55)_0%,rgba(7,7,8,0.2)_38%,rgba(7,7,8,0.75)_72%,rgba(7,7,8,1)_100%)] sm:hidden"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-36 bg-gradient-to-t from-background to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-background to-transparent"
       />
 
+      {/* Mobile: full-bleed globe behind the copy. Desktop: side composition. */}
       <div
         className={cn(
-          'pointer-events-none absolute z-[5] flex',
-          // Mobile: sit the globe upper-right as atmosphere, not competing with the title
-          'inset-x-0 top-[4.5rem] h-[min(58vw,280px)] items-start justify-center',
-          // Desktop: side panel
-          'sm:inset-y-0 sm:top-auto sm:right-0 sm:h-auto sm:w-[56%] sm:items-center sm:justify-end lg:w-[54%]',
+          'pointer-events-none absolute z-[5] flex items-center justify-center',
+          'inset-0',
+          'sm:inset-y-0 sm:left-auto sm:right-0 sm:w-[56%] sm:justify-end lg:w-[54%]',
           dir === 'rtl' && 'sm:right-auto sm:left-0 sm:justify-start'
         )}
       >
         <div
           className={cn(
             'pointer-events-auto aspect-square animate-globe-in',
-            'w-[min(70vw,300px)] translate-x-[18%] opacity-50',
-            'sm:w-[min(54vw,620px)] sm:translate-x-[4%] sm:translate-y-0 sm:opacity-100',
+            'w-[min(128vw,520px)] opacity-[0.42]',
+            'sm:w-[min(54vw,620px)] sm:translate-x-[4%] sm:opacity-100',
             'lg:w-[min(50vw,680px)] lg:translate-x-[6%]',
-            dir === 'rtl' && 'translate-x-[-18%] sm:-translate-x-[4%] lg:-translate-x-[6%]'
+            dir === 'rtl' && 'sm:-translate-x-[4%] lg:-translate-x-[6%]'
           )}
         >
           <HeroGlobe className="h-full w-full animate-globe-float" />
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:justify-center sm:px-8 sm:pb-20">
+      {/* Soft veil so mobile type stays sharp over the globe */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[6] bg-[radial-gradient(ellipse_at_center,rgba(7,7,8,0.15)_0%,rgba(7,7,8,0.72)_72%,rgba(7,7,8,0.92)_100%)] sm:hidden"
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-6xl flex-col justify-center px-5 pb-16 pt-24 sm:px-8 sm:pb-20 sm:pt-28">
         <div className="max-w-xl animate-fade-up pointer-events-none lg:max-w-2xl [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
-          <p className="font-display text-[2.75rem] font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
+          <p className="font-display text-[3.25rem] font-bold leading-[0.98] tracking-tight text-white sm:text-6xl md:text-7xl">
             KurdLogs
             <span className="mt-1 block font-semibold text-white/65 sm:mt-2">Core</span>
           </p>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-white/70 sm:mt-6 sm:max-w-xl sm:text-xl">
+          <p className="mt-5 max-w-md text-[1.05rem] leading-relaxed text-white/75 sm:mt-6 sm:max-w-xl sm:text-xl">
             {t.hero.tagline}
           </p>
           <div className="mt-8 sm:mt-10">
