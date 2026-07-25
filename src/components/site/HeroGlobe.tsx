@@ -190,7 +190,7 @@ export default function HeroGlobe({ className }: HeroGlobeProps) {
               draggable={false}
             />
           </div>
-          <span className="absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap text-[11px] font-semibold tracking-[0.08em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)] sm:text-xs lg:text-sm">
+          <span className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#fafafa] px-2 py-0.5 text-[10px] font-bold tracking-[0.14em] text-[#0a0a0b] shadow-[0_4px_14px_rgba(0,0,0,0.65)] sm:text-[11px]">
             Kurdistan
           </span>
         </div>
