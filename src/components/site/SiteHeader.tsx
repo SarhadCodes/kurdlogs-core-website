@@ -54,9 +54,11 @@ export default function SiteHeader() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-[background,border-color,backdrop-filter] duration-300',
-        scrolled || open
-          ? 'border-b border-white/[0.06] bg-[#070708]/80 backdrop-blur-2xl'
-          : 'border-b border-transparent bg-transparent'
+        open
+          ? 'border-b border-white/[0.06] bg-[#070708]'
+          : scrolled
+            ? 'border-b border-white/[0.06] bg-[#070708]/90 backdrop-blur-xl'
+            : 'border-b border-transparent bg-transparent'
       )}
     >
       <div className="relative z-[60] mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
@@ -158,7 +160,7 @@ export default function SiteHeader() {
       >
         <div
           className={cn(
-            'absolute inset-0 bg-[#050506]/92 backdrop-blur-2xl transition-opacity duration-500 ease-out',
+            'absolute inset-0 bg-[#070708] transition-opacity duration-500 ease-out',
             open ? 'opacity-100' : 'opacity-0'
           )}
           onClick={() => setOpen(false)}
@@ -166,7 +168,7 @@ export default function SiteHeader() {
         <div
           aria-hidden
           className={cn(
-            'pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_55%)] transition-opacity duration-500',
+            'pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.04),transparent_50%)] transition-opacity duration-500',
             open ? 'opacity-100' : 'opacity-0'
           )}
         />
