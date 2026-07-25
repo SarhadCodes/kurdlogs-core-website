@@ -70,6 +70,10 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        'menu-reveal': {
+          from: { opacity: '0', transform: 'translateY(16px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both',
@@ -78,6 +82,7 @@ export default {
         'globe-float': 'globe-float 9s ease-in-out 1.4s infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'menu-reveal': 'menu-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
     },
   },
