@@ -62,23 +62,20 @@ function Get-KlEnvValue([string]$Path, [string]$Key) {
 }
 
 function Set-KlEnvValue([string]$Path, [string]$Key, [string]$Value) {
-  $lines = @()
-  if (Test-Path $Path) {
-    $lines = @(Get-Content $Path -Encoding UTF8)
+  $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+  if (-not (Test-Path $Path)) {
+    [System.IO.File]::WriteAllText($Path, "$Key=$Value`n", $utf8NoBom)
+    return
   }
-  $found = $false
-  $out = foreach ($line in $lines) {
-    if ($line -match ("^" + [regex]::Escape($Key) + "=")) {
-      $found = $true
-      "$Key=$Value"
-    } else {
-      $line
-    }
+  $raw = [System.IO.File]::ReadAllText($Path)
+  $pattern = '(?m)^' + [regex]::Escape($Key) + '=.*$'
+  if ([regex]::IsMatch($raw, $pattern)) {
+    $raw = [regex]::Replace($raw, $pattern, "$Key=$Value", 1)
+  } else {
+    if ($raw.Length -gt 0 -and -not $raw.EndsWith("`n")) { $raw += "`n" }
+    $raw += "$Key=$Value`n"
   }
-  if (-not $found) {
-    $out = @($out) + @("$Key=$Value")
-  }
-  Set-Content -Path $Path -Value $out -Encoding UTF8
+  [System.IO.File]::WriteAllText($Path, $raw, $utf8NoBom)
 }
 
 $adminPasswordShown = $null
@@ -93,8 +90,8 @@ if (-not (Test-Path $envPath)) {
   [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
   $api = ($bytes | ForEach-Object { $_.ToString('x2') }) -join ''
   $adminPasswordShown = New-KlAdminPassword
-
-  @"
+  $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+  $envBody = @"
 PUBLIC_BASE_URL=http://localhost:$HttpPort
 JWT_SECRET=$jwt
 ADMIN_INITIAL_PASSWORD=$adminPasswordShown
@@ -108,7 +105,8 @@ TOKEN_REFRESH_AHEAD_SECONDS=90
 KURDLOGS_IMAGE_BACKEND=ghcr.io/sarhadcodes/kurdlogs-core-backend:$ImageTag
 KURDLOGS_IMAGE_FRONTEND=ghcr.io/sarhadcodes/kurdlogs-core-frontend:$ImageTag
 KURDLOGS_IMAGE_NGINX=ghcr.io/sarhadcodes/kurdlogs-core-nginx:$ImageTag
-"@ | Set-Content -Path $envPath -Encoding UTF8
+"@
+  [System.IO.File]::WriteAllText($envPath, $envBody.TrimStart() + "`n", $utf8NoBom)
   Write-Ok 'Created .env with generated secrets'
 } else {
   $adminPasswordShown = Get-KlEnvValue $envPath 'ADMIN_INITIAL_PASSWORD'
