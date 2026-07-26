@@ -1,0 +1,91 @@
+# KurdLogs Core — customer distribution (no source, images only)
+# Force a stable project name so folder renames do not create a second network.
+name: kurdlogs_core
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: kurdlogs
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - kurdlogs_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    image: ${KURDLOGS_IMAGE_BACKEND:-ghcr.io/sarhadcodes/kurdlogs-core-backend:latest}
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/kurdlogs
+      JWT_SECRET: ${JWT_SECRET:-change-me-jwt-secret}
+      PORT: 3001
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8081,http://localhost,${PUBLIC_BASE_URL:-http://localhost:8081}}
+      FFMPEG_PATH: ffmpeg
+      STREAMS_DIR: /var/streams
+      UPLOADS_DIR: /var/uploads
+      NGINX_HLS_URL: http://nginx-rtmp:8080/hls
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:8081}
+      HTTP_PORT: ${HTTP_PORT:-8081}
+      RTMP_PUBLISH_PORT: ${RTMP_PUBLISH_PORT:-1936}
+      MCR_RTMP_PORT: ${MCR_RTMP_PORT:-1936}
+      MCR_RTMP_APP: ${MCR_RTMP_APP:-live}
+      MCR_ARCHITECTURE: ${MCR_ARCHITECTURE:-v2-switcher}
+      IPTV_API_KEY: ${IPTV_API_KEY:-change-me-iptv-api-key}
+      TOKEN_OVERLAP_SECONDS: ${TOKEN_OVERLAP_SECONDS:-120}
+      TOKEN_REFRESH_AHEAD_SECONDS: ${TOKEN_REFRESH_AHEAD_SECONDS:-90}
+      NODE_ENV: production
+    volumes:
+      - streams_data:/var/streams
+      - uploads_data:/var/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      nginx-rtmp:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      kurdlogs_net:
+        ipv4_address: 172.30.7.10
+
+  frontend:
+    image: ${KURDLOGS_IMAGE_FRONTEND:-ghcr.io/sarhadcodes/kurdlogs-core-frontend:latest}
+    ports:
+      - "${HTTP_PORT:-8081}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - kurdlogs_net
+
+  nginx-rtmp:
+    image: ${KURDLOGS_IMAGE_NGINX:-ghcr.io/sarhadcodes/kurdlogs-core-nginx:latest}
+    volumes:
+      - streams_data:/var/streams
+    ports:
+      - "${RTMP_PUBLISH_PORT:-1936}:${MCR_RTMP_PORT:-1936}"
+    restart: unless-stopped
+    networks:
+      - kurdlogs_net
+
+volumes:
+  postgres_data:
+  streams_data:
+  uploads_data:
+
+networks:
+  kurdlogs_net:
+    name: kurdlogs_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.7.0/24
