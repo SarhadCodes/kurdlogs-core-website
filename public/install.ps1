@@ -46,6 +46,41 @@ Write-Ok 'docker-compose.yml'
 
 Write-Step '03' "Configure environment"
 $envPath = Join-Path $InstallDir '.env'
+
+function New-KlAdminPassword {
+  $bytes = New-Object byte[] 10
+  [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
+  $adminHex = ($bytes | ForEach-Object { $_.ToString('x2') }) -join ''
+  return "Kl-${adminHex}9A"
+}
+
+function Get-KlEnvValue([string]$Path, [string]$Key) {
+  if (-not (Test-Path $Path)) { return $null }
+  $line = Get-Content $Path -Encoding UTF8 | Where-Object { $_ -match ("^" + [regex]::Escape($Key) + "=") } | Select-Object -First 1
+  if (-not $line) { return $null }
+  return ($line -replace ("^" + [regex]::Escape($Key) + "="), '').Trim().Trim('"').Trim("'")
+}
+
+function Set-KlEnvValue([string]$Path, [string]$Key, [string]$Value) {
+  $lines = @()
+  if (Test-Path $Path) {
+    $lines = @(Get-Content $Path -Encoding UTF8)
+  }
+  $found = $false
+  $out = foreach ($line in $lines) {
+    if ($line -match ("^" + [regex]::Escape($Key) + "=")) {
+      $found = $true
+      "$Key=$Value"
+    } else {
+      $line
+    }
+  }
+  if (-not $found) {
+    $out = @($out) + @("$Key=$Value")
+  }
+  Set-Content -Path $Path -Value $out -Encoding UTF8
+}
+
 $adminPasswordShown = $null
 if (-not (Test-Path $envPath)) {
   $bytes = New-Object byte[] 24
@@ -57,10 +92,7 @@ if (-not (Test-Path $envPath)) {
   $bytes = New-Object byte[] 16
   [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
   $api = ($bytes | ForEach-Object { $_.ToString('x2') }) -join ''
-  $bytes = New-Object byte[] 10
-  [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
-  $adminHex = ($bytes | ForEach-Object { $_.ToString('x2') }) -join ''
-  $adminPasswordShown = "Kl-${adminHex}9A"
+  $adminPasswordShown = New-KlAdminPassword
 
   @"
 PUBLIC_BASE_URL=http://localhost:$HttpPort
@@ -79,11 +111,14 @@ KURDLOGS_IMAGE_NGINX=ghcr.io/sarhadcodes/kurdlogs-core-nginx:$ImageTag
 "@ | Set-Content -Path $envPath -Encoding UTF8
   Write-Ok 'Created .env with generated secrets'
 } else {
-  $adminLine = Get-Content $envPath | Where-Object { $_ -match '^ADMIN_INITIAL_PASSWORD=' } | Select-Object -First 1
-  if ($adminLine) {
-    $adminPasswordShown = ($adminLine -replace '^ADMIN_INITIAL_PASSWORD=', '').Trim()
+  $adminPasswordShown = Get-KlEnvValue $envPath 'ADMIN_INITIAL_PASSWORD'
+  if (-not $adminPasswordShown) {
+    $adminPasswordShown = New-KlAdminPassword
+    Set-KlEnvValue $envPath 'ADMIN_INITIAL_PASSWORD' $adminPasswordShown
+    Write-Ok 'Added ADMIN_INITIAL_PASSWORD to existing .env'
+  } else {
+    Write-Ok '.env already exists — keeping your settings'
   }
-  Write-Ok '.env already exists — keeping your settings'
 }
 
 Write-Step '04' "Pull binary images"
@@ -126,12 +161,8 @@ Write-Ok 'Services started'
 
 Write-Host ""
 Write-Host "  INSTALL COMPLETE" -ForegroundColor Green
-Write-Host "  open  →  http://localhost:$HttpPort"
-if ($adminPasswordShown) {
-  Write-Host "  login →  admin / $adminPasswordShown"
-  Write-Host "  note  →  change password + enable MFA in Settings after first login"
-} else {
-  Write-Host "  login →  admin / (see ADMIN_INITIAL_PASSWORD in .env or backend logs)"
-}
-Write-Host "  path  →  $InstallDir"
+Write-Host "  open      →  http://localhost:$HttpPort"
+Write-Host "  username →  admin"
+Write-Host "  password →  $adminPasswordShown" -ForegroundColor Yellow
+Write-Host "  path     →  $InstallDir"
 Write-Host ""

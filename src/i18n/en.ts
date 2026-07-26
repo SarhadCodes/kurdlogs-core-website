@@ -108,7 +108,7 @@ export const en = {
       },
       {
         q: 'How do I log in the first time?',
-        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and the one-time password printed by the installer (also saved as ADMIN_INITIAL_PASSWORD in .env). Then change your password and enable MFA in Settings.',
+        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and the strong password printed by the installer (also saved as ADMIN_INITIAL_PASSWORD in .env). Changing the password or enabling MFA in Settings is optional.',
       },
       {
         q: 'Can I run it alongside Flussonic or other media servers?',
@@ -157,7 +157,7 @@ export const en = {
     username: 'Username',
     password: 'Password',
     changePassword:
-      'The installer prints a unique password (also in .env as ADMIN_INITIAL_PASSWORD). After signing in, change it and enable MFA in Settings.',
+      'The installer prints a strong password (also in .env as ADMIN_INITIAL_PASSWORD). You can keep it, or change it / enable MFA anytime in Settings.',
     openPanel: 'Open panel at {host}',
     githubRepo: 'Product page',
     verifyEyebrow: 'Verify',
@@ -186,12 +186,12 @@ export const en = {
       {
         title: 'Open the panel',
         detail:
-          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in as admin with the one-time password printed by the installer.',
+          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in as admin with the username and password printed by the installer.',
       },
       {
         title: 'Secure and verify',
         detail:
-          'Change the admin password and enable MFA in Settings. Create a channel or playlist, and confirm Monitoring shows CPU/memory.',
+          'Create a channel or playlist, and confirm Monitoring shows CPU/memory. Optionally change the admin password or enable MFA in Settings.',
       },
     ],
     commandLabels: [

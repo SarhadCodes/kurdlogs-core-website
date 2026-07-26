@@ -169,7 +169,7 @@ export default function DocsPage() {
             {' · '}
             {t.docs.password}{' '}
             <span className="text-foreground">
-              one-time value from the installer (<code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm" dir="ltr">ADMIN_INITIAL_PASSWORD</code>)
+              printed by the installer (<code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm" dir="ltr">ADMIN_INITIAL_PASSWORD</code>)
             </span>
           </p>
           <p className="mt-4 text-sm text-muted-foreground">{t.docs.changePassword}</p>
