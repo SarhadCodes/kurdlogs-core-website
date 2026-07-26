@@ -21,7 +21,7 @@ export const en = {
     team: 'Team',
     faq: 'FAQ',
     docs: 'Documentation',
-    copyright: '© {year} KurdLogs Core. MIT licensed.',
+    copyright: '© {year} KurdLogs Core. Free to use. Proprietary license.',
   },
   hero: {
     tagline:
@@ -61,8 +61,8 @@ export const en = {
         body: 'Dashboards, previews, and health signals built for people who watch channels, not charts.',
       },
       {
-        title: 'Open core',
-        body: 'MIT licensed. Extend blueprints, overlays, and deploy scripts to match your plant.',
+        title: 'Free to run',
+        body: 'No license fee for self-hosted use. Source remains proprietary — use as shipped, do not redistribute modified copies.',
       },
     ],
     meetTeam: 'Meet the team',
@@ -120,7 +120,7 @@ export const en = {
       },
       {
         q: 'Is there a license fee?',
-        a: 'The project is MIT licensed. You can use, modify, and deploy it for your own broadcast operations.',
+        a: 'No. KurdLogs Core is free to install and run. It is not open source — you may use it as provided, but you may not modify or redistribute the source without permission.',
       },
     ],
   },
