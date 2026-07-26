@@ -109,7 +109,7 @@ export const ckb: Messages = {
       },
       {
         q: 'یەکەم جار چۆن دەچمە ژوورەوە؟',
-        a: 'کاتێک کۆنتەینەرەکان هەڵبوون، بڕۆ بۆ http://localhost:8081 و بە admin / admin123 بچۆ ژوورەوە. دەستبەجێ وشەی نهێنی لە Settings بگۆڕە.',
+        a: 'کاتێک کۆنتەینەرەکان هەڵبوون، بڕۆ بۆ http://localhost:8081. بە ناوی بەکارهێنەر admin و وشەی نهێنیی یەکجارەکی کە ئینستاڵەر پیشانی دەدات بچۆ ژوورەوە (هەروەها لە .env وەک ADMIN_INITIAL_PASSWORD). پاشان وشەی نهێنی بگۆڕە و MFA چالاک بکە.',
       },
       {
         q: 'لە تەنیشت Flussonic یان سێرڤەری تر کار دەکات؟',
@@ -151,10 +151,11 @@ export const ckb: Messages = {
     commandsDescription: 'ئینستاڵەر وێنەی ئامادە دەکێشێت — سەرچاوە نابینرێت.',
     copy: 'کۆپی',
     copied: 'کۆپی کرا',
-    defaultLogin: 'چوونەژوورەوەی بنەڕەتی',
+    defaultLogin: 'یەکەم چوونەژوورەوە',
     username: 'ناوی بەکارهێنەر',
     password: 'وشەی نهێنی',
-    changePassword: 'دوای یەکەم چوونەژوورەوە دەستبەجێ لە Settings بیگۆڕە.',
+    changePassword:
+      'ئینستاڵەر وشەی نهێنییەکی تایبەت پیشان دەدات (هەروەها لە .env وەک ADMIN_INITIAL_PASSWORD). دوای چوونەژوورەوە بیگۆڕە و MFA چالاک بکە.',
     openPanel: 'پانێڵ بکەرەوە لە {host}',
     githubRepo: 'سکریپتی ئینستاڵ',
     verifyEyebrow: 'پشتڕاستکردنەوە',
@@ -183,12 +184,12 @@ export const ckb: Messages = {
       {
         title: 'پانێڵ بکەرەوە',
         detail:
-          'بڕۆ بۆ http://localhost:8081 (یان `HTTP_PORT`ـەکەت). دوای یەکەم دەستپێکردن جارێک Hard Refresh بکە. بە admin / admin123 بچۆ ژوورەوە.',
+          'بڕۆ بۆ http://localhost:8081 (یان `HTTP_PORT`ـەکەت). دوای یەکەم دەستپێکردن جارێک Hard Refresh بکە. بە admin و وشەی نهێنیی ئینستاڵەر بچۆ ژوورەوە.',
       },
       {
-        title: 'پاراستن و پشکنین',
+        title: 'پاراستن و پشتڕاستکردنەوە',
         detail:
-          'وشەی نهێنی ئەدمین لە Settings بگۆڕە. کەناڵ یان پلەیلیستێک دروست بکە و چاودێری بپشکنە.',
+          'لە Settings وشەی نهێنی بگۆڕە و MFA چالاک بکە. کەناڵێک دروست بکە و دڵنیابە Monitoring کار دەکات.',
       },
     ],
     commandLabels: [

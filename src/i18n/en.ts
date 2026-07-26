@@ -108,7 +108,7 @@ export const en = {
       },
       {
         q: 'How do I log in the first time?',
-        a: 'After containers are up, open the panel URL (default http://localhost:8081) and sign in with admin / admin123. Change the password in Settings immediately.',
+        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and the one-time password printed by the installer (also saved as ADMIN_INITIAL_PASSWORD in .env). Then change your password and enable MFA in Settings.',
       },
       {
         q: 'Can I run it alongside Flussonic or other media servers?',
@@ -153,10 +153,11 @@ export const en = {
       'Use the Windows script for the smoothest local rebuild, or Compose directly.',
     copy: 'Copy',
     copied: 'Copied',
-    defaultLogin: 'Default login',
+    defaultLogin: 'First login',
     username: 'Username',
     password: 'Password',
-    changePassword: 'Change this immediately in Settings after your first successful login.',
+    changePassword:
+      'The installer prints a unique password (also in .env as ADMIN_INITIAL_PASSWORD). After signing in, change it and enable MFA in Settings.',
     openPanel: 'Open panel at {host}',
     githubRepo: 'Product page',
     verifyEyebrow: 'Verify',
@@ -185,12 +186,12 @@ export const en = {
       {
         title: 'Open the panel',
         detail:
-          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in with admin / admin123.',
+          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in as admin with the one-time password printed by the installer.',
       },
       {
         title: 'Secure and verify',
         detail:
-          'Change the admin password in Settings. Create a channel or playlist, and confirm Monitoring shows CPU/memory.',
+          'Change the admin password and enable MFA in Settings. Create a channel or playlist, and confirm Monitoring shows CPU/memory.',
       },
     ],
     commandLabels: [
