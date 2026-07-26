@@ -1,4 +1,4 @@
-import type { Messages } from './en';
+﻿import type { Messages } from './en';
 
 /** Native-voice Sorani copy (not a literal English calque). */
 export const ckb: Messages = {
@@ -105,7 +105,7 @@ export const ckb: Messages = {
       },
       {
         q: 'بۆ ئینستاڵ چیم پێویستە؟',
-        a: 'Docker و Docker Compose، هەروەها Git بۆ کلۆن. لە Windows/macOS دۆکەر دێسکتۆپ دابەزێنە؛ لە Linux دۆکەر ئێنجن ئینستاڵ بکە. لینکەکان لە بەڵگەنامەدان. ستاکەکە PostgreSQL، API، پانێڵ و NGINX RTMPـی تێدایە.',
+        a: 'Docker و Docker Compose. لە Windows/macOS دۆکەر دێسکتۆپ دابەزێنە؛ لە Linux دۆکەر ئێنجن. لە بەڵگەنامە فەرمانی یەک-هێڵی هەیە کە وێنەی ئامادە دەکێشێت — Git یان کلۆنی سەرچاوە پێویست نییە.',
       },
       {
         q: 'یەکەم جار چۆن دەچمە ژوورەوە؟',
@@ -144,11 +144,11 @@ export const ckb: Messages = {
       'پۆرتی ٨٠٨١ (پانێڵ) و ١٩٣٦ (RTMP) بەتاڵ بن',
     ],
     guideEyebrow: 'ڕێنمایی',
-    guideTitle: 'شەش هەنگاو تا پانێڵ کار بکات',
+    guideTitle: 'پێنج هەنگاو تا پانێڵ کار بکات',
     guideDescription: 'هەر هەنگاوێک لەسەر پێشوو دەڕوات. لە کۆتاییدا شاشەی چوونەژوورەوە دەبینیت.',
     commandsEyebrow: 'فەرمانەکان',
     commandsTitle: 'کۆپی بکە و جێبەجێی بکە',
-    commandsDescription: 'لە Windows سکریپتەکە ئاسانترە؛ یان ڕاستەوخۆ Compose بەکاربهێنە.',
+    commandsDescription: 'ئینستاڵەر وێنەی ئامادە دەکێشێت — سەرچاوە نابینرێت.',
     copy: 'کۆپی',
     copied: 'کۆپی کرا',
     defaultLogin: 'چوونەژوورەوەی بنەڕەتی',
@@ -156,7 +156,7 @@ export const ckb: Messages = {
     password: 'وشەی نهێنی',
     changePassword: 'دوای یەکەم چوونەژوورەوە دەستبەجێ لە Settings بیگۆڕە.',
     openPanel: 'پانێڵ بکەرەوە لە {host}',
-    githubRepo: 'ڕێپۆی GitHub',
+    githubRepo: 'سکریپتی ئینستاڵ',
     verifyEyebrow: 'پشتڕاستکردنەوە',
     verifyTitle: 'دڵنیابە ئینستاڵەکە سەرکەوتوو بوو',
     verifyItems: [
@@ -171,45 +171,32 @@ export const ckb: Messages = {
           'لە لینکەکانی سەرەوە دابەزێنە. Windows/macOS: Docker Desktop. Linux: Engine + Compose. بە `docker --version` و `docker compose version` تاقی بکەرەوە.',
       },
       {
-        title: 'پڕۆژەکە بگرە',
+        title: 'ئینستاڵەر جێبەجێ بکە',
         detail:
-          'https://github.com/SarhadCodes/Kurdlogs-core.git کلۆن بکە و تێرمیناڵ لە ڕەگەی پڕۆژەکە بکەرەوە (ئەو فۆڵدەرەی `docker-compose.yml`ی تێدایە).',
+          'Linux/VPS: `curl -fsSL https://kurdlogs-core.sarhadyt.workers.dev/install.sh | sudo bash`. Windows: `irm https://kurdlogs-core.sarhadyt.workers.dev/install.ps1 | iex`. تەنها وێنەی ئامادە دەکێشرێت — سەرچاوە نا.',
       },
       {
-        title: 'ڕێکخستنی ژینگە (ئارەزوومەندانە)',
+        title: 'چاوەڕوانی کۆنتەینەرەکان',
         detail:
-          'ئەگەر `.env.example` هەبوو، بکۆپی بکە بۆ `.env`. یان `.env` دروست بکە بە `JWT_SECRET`، `POSTGRES_PASSWORD` و `HTTP_PORT=8081`. بۆ تاقیکردنەوەی ناوخۆ بنەڕەتەکان بەسە.',
-      },
-      {
-        title: 'دروستکردن و هەڵکردن',
-        detail:
-          'Windows: `.\\deploy-local.cmd`. Linux/VPS: `sudo ./install.sh`. یان `docker compose build` پاشان `docker compose up -d`. چاوەڕوانی تەندروستی Postgres بکە.',
+          'ئینستاڵەر وێنەکان دەکێشێت و Postgres، API، پانێڵ و NGINX RTMP هەڵدەکات. لە فۆڵدەری ئینستاڵ `docker compose ps` بپشکنە.',
       },
       {
         title: 'پانێڵ بکەرەوە',
         detail:
-          'بڕۆ بۆ http://localhost:8081 (یان `HTTP_PORT`ـەکەت). دوای یەکەم بیلد جارێک Hard Refresh بکە. بە admin / admin123 بچۆ ژوورەوە.',
+          'بڕۆ بۆ http://localhost:8081 (یان `HTTP_PORT`ـەکەت). دوای یەکەم دەستپێکردن جارێک Hard Refresh بکە. بە admin / admin123 بچۆ ژوورەوە.',
       },
       {
         title: 'پاراستن و پشکنین',
         detail:
-          'وشەی نهێنی ئەدمین لە Settings بگۆڕە. کەناڵ یان پلەیلیستێک دروست بکە. چاودێری بپشکنە و دوای نوێکردنەوە وەشانی بیلدی سایدبار ببینە.',
+          'وشەی نهێنی ئەدمین لە Settings بگۆڕە. کەناڵ یان پلەیلیستێک دروست بکە و چاودێری بپشکنە.',
       },
     ],
     commandLabels: [
-      'کلۆنکردنی ڕێپۆ',
-      'Windows (CLIـی براندکراو)',
-      'Linux / VPS (CLIـی براندکراو)',
-      'Docker Compose',
-      'پشکنینی دۆخ',
+      'ئینستاڵەری Linux / VPS',
+      'ئینستاڵەری Windows',
+      'دۆخ / لۆگ',
     ],
     requirements: [
-      {
-        name: 'کوردلۆگز کۆر',
-        platform: 'GitHub',
-        detail: 'ڕێپۆی فەرمی: سۆرس، Docker Compose و سکریپتەکانی ئینستاڵ.',
-        cta: 'لە GitHub بکەرەوە',
-      },
       {
         name: 'Docker Desktop',
         platform: 'Windows و macOS',
@@ -221,12 +208,6 @@ export const ckb: Messages = {
         platform: 'Linux / VPS',
         detail: 'بۆ سێرڤەر Engine لەگەڵ پلاگینی Compose ئینستاڵ بکە. ڕێنمایی دیسترۆکەت شوێن بکەوە.',
         cta: 'Docker Engine ئینستاڵ بکە',
-      },
-      {
-        name: 'Git',
-        platform: 'هەموو پلاتفۆرمەکان',
-        detail: 'بۆ کلۆنکردنی ڕێپۆی کوردلۆگز کۆر پێویستە.',
-        cta: 'Git دابەزێنە',
       },
       {
         name: 'WSL 2',

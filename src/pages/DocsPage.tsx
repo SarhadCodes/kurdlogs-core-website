@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { PageHero, Section, SectionHeading } from '@/components/site/Section';
 import {
+  INSTALL_PS1_URL,
+  INSTALL_SH_URL,
   installCommandCodes,
-  REPO_PAGE_URL,
-  REPO_URL,
   requirementHrefs,
 } from '@/data/site';
 import { useI18n } from '@/i18n';
@@ -175,15 +175,18 @@ export default function DocsPage() {
           <p className="mt-4 text-sm text-muted-foreground">{t.docs.changePassword}</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild variant="outline">
-              <a href={REPO_PAGE_URL} target="_blank" rel="noreferrer">
-                {t.docs.githubRepo}
+              <a href={INSTALL_SH_URL} target="_blank" rel="noreferrer">
+                Linux install script
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild variant="secondary">
+              <a href={INSTALL_PS1_URL} target="_blank" rel="noreferrer">
+                Windows install script
                 <ExternalLink className="h-4 w-4" />
               </a>
             </Button>
           </div>
-          <p className="mt-4 break-all font-mono text-xs text-muted-foreground" dir="ltr">
-            {REPO_URL}
-          </p>
         </div>
       </Section>
 

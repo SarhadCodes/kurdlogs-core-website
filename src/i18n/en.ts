@@ -104,7 +104,7 @@ export const en = {
       },
       {
         q: 'What do I need to install it?',
-        a: 'Docker and Docker Compose (plus Git to clone the repo). On Windows/macOS download Docker Desktop; on Linux install Docker Engine. The Docs page has direct download links. The stack includes PostgreSQL, the API, the panel, and NGINX RTMP.',
+        a: 'Docker and Docker Compose. On Windows/macOS download Docker Desktop; on Linux install Docker Engine. The Docs page has one-line installers that pull prebuilt images — no Git or source clone required.',
       },
       {
         q: 'How do I log in the first time?',
@@ -144,7 +144,7 @@ export const en = {
       'Ports 8081 (panel) and 1936 (RTMP) available',
     ],
     guideEyebrow: 'Guide',
-    guideTitle: 'Six steps to a running panel',
+    guideTitle: 'Five steps to a running panel',
     guideDescription:
       'Each step builds on the previous. After the last one you should see the KurdLogs login screen.',
     commandsEyebrow: 'Commands',
@@ -158,7 +158,7 @@ export const en = {
     password: 'Password',
     changePassword: 'Change this immediately in Settings after your first successful login.',
     openPanel: 'Open panel at {host}',
-    githubRepo: 'GitHub repository',
+    githubRepo: 'Product page',
     verifyEyebrow: 'Verify',
     verifyTitle: 'Confirm the install worked',
     verifyItems: [
@@ -173,45 +173,32 @@ export const en = {
           'Download Docker from the links above. On Windows/macOS use Docker Desktop; on Linux use Docker Engine + Compose. Confirm with `docker --version` and `docker compose version`.',
       },
       {
-        title: 'Get the project',
+        title: 'Run the installer',
         detail:
-          'Clone https://github.com/SarhadCodes/Kurdlogs-core.git then open a terminal in the project root (the folder that contains `docker-compose.yml`).',
+          'Linux/VPS: `curl -fsSL https://kurdlogs-core.sarhadyt.workers.dev/install.sh | sudo bash`. Windows PowerShell: `irm https://kurdlogs-core.sarhadyt.workers.dev/install.ps1 | iex`. This downloads release images only — not the source code.',
       },
       {
-        title: 'Configure environment (optional)',
+        title: 'Wait for containers',
         detail:
-          'Copy `.env.example` to `.env` if present, or create `.env` with `JWT_SECRET`, `POSTGRES_PASSWORD`, and `HTTP_PORT=8081`. Defaults work for local testing.',
-      },
-      {
-        title: 'Build and start',
-        detail:
-          'On Windows run `.\\deploy-local.cmd`. On Linux/VPS run `sudo ./install.sh`. Or use `docker compose build` then `docker compose up -d`. Wait until Postgres is healthy.',
+          'The installer pulls prebuilt images and starts Postgres, the API, the panel, and NGINX RTMP. Wait until services are healthy (`docker compose ps` in the install folder).',
       },
       {
         title: 'Open the panel',
         detail:
-          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first build. Sign in with admin / admin123.',
+          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in with admin / admin123.',
       },
       {
         title: 'Secure and verify',
         detail:
-          'Change the admin password in Settings. Create a channel or playlist, confirm Monitoring shows CPU/memory, and check the sidebar build version after updates.',
+          'Change the admin password in Settings. Create a channel or playlist, and confirm Monitoring shows CPU/memory.',
       },
     ],
     commandLabels: [
-      'Clone repository',
-      'Windows (branded CLI)',
-      'Linux / VPS (branded CLI)',
-      'Docker Compose',
-      'Check status',
+      'Linux / VPS installer',
+      'Windows installer',
+      'Check status / logs',
     ],
     requirements: [
-      {
-        name: 'KurdLogs Core',
-        platform: 'GitHub',
-        detail: 'Clone the official repository — source, Docker Compose files, and deploy scripts.',
-        cta: 'Open on GitHub',
-      },
       {
         name: 'Docker Desktop',
         platform: 'Windows & macOS',
@@ -223,12 +210,6 @@ export const en = {
         platform: 'Linux / VPS',
         detail: 'Install Engine with the Compose plugin for servers. Follow the guide for your distro.',
         cta: 'Install Docker Engine',
-      },
-      {
-        name: 'Git',
-        platform: 'All platforms',
-        detail: 'Required to clone the KurdLogs Core repository from GitHub.',
-        cta: 'Download Git',
       },
       {
         name: 'WSL 2',
