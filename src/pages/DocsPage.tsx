@@ -4,8 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { PageHero, Section, SectionHeading } from '@/components/site/Section';
 import {
-  INSTALL_PS1_URL,
-  INSTALL_SH_URL,
   installCommandCodes,
   requirementHrefs,
 } from '@/data/site';
@@ -178,20 +176,6 @@ export default function DocsPage() {
             </span>
           </p>
           <p className="mt-4 text-sm text-muted-foreground">{t.docs.changePassword}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild variant="outline">
-              <a href={INSTALL_SH_URL} target="_blank" rel="noreferrer">
-                Linux install script
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild variant="secondary">
-              <a href={INSTALL_PS1_URL} target="_blank" rel="noreferrer">
-                Windows install script
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
         </div>
       </Section>
 
