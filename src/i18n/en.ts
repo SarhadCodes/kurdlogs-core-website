@@ -108,7 +108,7 @@ export const en = {
       },
       {
         q: 'How do I log in the first time?',
-        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and the strong password printed by the installer (also saved as ADMIN_INITIAL_PASSWORD in .env). A skippable panel guide walks you through each section on first login.',
+        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and password Kurdlogs! (also saved as ADMIN_INITIAL_PASSWORD in .env on first install). A skippable panel guide walks you through each section on first login.',
       },
       {
         q: 'Can I run it alongside Flussonic or other media servers?',
@@ -157,7 +157,7 @@ export const en = {
     username: 'Username',
     password: 'Password',
     changePassword:
-      'The installer prints a strong password (also in .env as ADMIN_INITIAL_PASSWORD). You can keep it, or change it / enable MFA anytime in Settings.',
+      'On first install the default password is Kurdlogs! (also in .env as ADMIN_INITIAL_PASSWORD). You can change it or enable MFA anytime in Settings.',
     openPanel: 'Open panel at {host}',
     githubRepo: 'Product page',
     verifyEyebrow: 'Verify',

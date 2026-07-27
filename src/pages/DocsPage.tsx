@@ -168,8 +168,13 @@ export default function DocsPage() {
             </code>
             {' · '}
             {t.docs.password}{' '}
-            <span className="text-foreground">
-              printed by the installer (<code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm" dir="ltr">ADMIN_INITIAL_PASSWORD</code>)
+            <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground" dir="ltr">
+              Kurdlogs!
+            </code>
+            {' '}
+            <span className="text-muted-foreground">
+              (first install; also in{' '}
+              <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm" dir="ltr">ADMIN_INITIAL_PASSWORD</code>)
             </span>
           </p>
           <p className="mt-4 text-sm text-muted-foreground">{t.docs.changePassword}</p>

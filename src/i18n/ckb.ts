@@ -109,7 +109,7 @@ export const ckb: Messages = {
       },
       {
         q: 'یەکەم جار چۆن دەچمە ژوورەوە؟',
-        a: 'کاتێک کۆنتەینەرەکان هەڵبوون، بڕۆ بۆ http://localhost:8081. بە ناوی بەکارهێنەر admin و وشەی نهێنیی بەهێز کە ئینستاڵەر پیشانی دەدات بچۆ ژوورەوە (هەروەها لە .env وەک ADMIN_INITIAL_PASSWORD). گۆڕینی وشەی نهێنی یان چالاککردنی MFA لە Settings ئارەزوومەندانەیە.',
+        a: 'کاتێک کۆنتەینەرەکان هەڵبوون، بڕۆ بۆ http://localhost:8081. بە ناوی بەکارهێنەر admin و وشەی نهێنی Kurdlogs! بچۆ ژوورەوە (لە دامەزراندنی یەکەم لە .env وەک ADMIN_INITIAL_PASSWORD). گۆڕینی وشەی نهێنی یان چالاککردنی MFA لە Settings ئارەزوومەندانەیە.',
       },
       {
         q: 'لە تەنیشت Flussonic یان سێرڤەری تر کار دەکات؟',
@@ -155,7 +155,7 @@ export const ckb: Messages = {
     username: 'ناوی بەکارهێنەر',
     password: 'وشەی نهێنی',
     changePassword:
-      'ئینستاڵەر وشەی نهێنییەکی بەهێز پیشان دەدات (هەروەها لە .env وەک ADMIN_INITIAL_PASSWORD). دەتوانیت هەروا بەکاری بهێنیت، یان لە Settings بیگۆڕیت / MFA چالاک بکەیت.',
+      'لە دامەزراندنی یەکەم وشەی نهێنی بنەڕەتی Kurdlogs!ە (هەروەها لە .env وەک ADMIN_INITIAL_PASSWORD). دەتوانیت لە Settings بیگۆڕیت یان MFA چالاک بکەیت.',
     openPanel: 'پانێڵ بکەرەوە لە {host}',
     githubRepo: 'سکریپتی ئینستاڵ',
     verifyEyebrow: 'پشتڕاستکردنەوە',
