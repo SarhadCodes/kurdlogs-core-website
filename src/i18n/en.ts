@@ -108,7 +108,7 @@ export const en = {
       },
       {
         q: 'How do I log in the first time?',
-        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and the strong password printed by the installer (also saved as ADMIN_INITIAL_PASSWORD in .env). Changing the password or enabling MFA in Settings is optional.',
+        a: 'After containers are up, open the panel URL (default http://localhost:8081). Sign in with username admin and the strong password printed by the installer (also saved as ADMIN_INITIAL_PASSWORD in .env). A skippable panel guide walks you through each section on first login.',
       },
       {
         q: 'Can I run it alongside Flussonic or other media servers?',
@@ -186,7 +186,7 @@ export const en = {
       {
         title: 'Open the panel',
         detail:
-          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in as admin with the username and password printed by the installer.',
+          'Visit http://localhost:8081 (or your `HTTP_PORT`). Hard refresh once after the first start. Sign in as admin with the username and password printed by the installer. A skippable tour explains each page.',
       },
       {
         title: 'Secure and verify',
