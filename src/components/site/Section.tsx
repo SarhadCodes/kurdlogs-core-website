@@ -48,11 +48,15 @@ export function SectionHeading({
 export function PageHero({
   eyebrow,
   title,
+  subtitle,
   description,
+  children,
 }: {
   eyebrow?: string;
   title: string;
+  subtitle?: string;
   description?: string;
+  children?: ReactNode;
 }) {
   return (
     <div className="border-b border-border bg-[radial-gradient(ellipse_at_top,_hsl(240_5%_12%),_transparent_55%)] px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32">
@@ -65,11 +69,13 @@ export function PageHero({
         <h1 className="max-w-3xl font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
           {title}
         </h1>
+        {subtitle && <p className="mt-3 text-sm text-muted-foreground">{subtitle}</p>}
         {description && (
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {description}
           </p>
         )}
+        {children}
       </div>
     </div>
   );

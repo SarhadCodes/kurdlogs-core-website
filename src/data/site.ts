@@ -2,6 +2,40 @@ export const PANEL_URL = import.meta.env.VITE_PANEL_URL || 'http://localhost:808
 export const INSTALL_SH_URL = 'https://kurdlogs-core.sarhadyt.workers.dev/install.sh';
 export const INSTALL_PS1_URL = 'https://kurdlogs-core.sarhadyt.workers.dev/install.ps1';
 export const REPO_PAGE_URL = 'https://github.com/SarhadCodes/Kurdlogs-core';
+export const GITHUB_URL = 'https://github.com/SarhadCodes';
+export const CORE_SCREENSHOT = '/screenshots/dashboard.png';
+export const CORE_ICON = '/images/products/core-icon.svg';
+export const LIVE_WAVE_ICON = '/images/products/live-wave-icon.png';
+export const CONTROL_ICON = '/images/products/control-icon.svg';
+export const PRODUCT_PATHS = ['/wave'] as const;
+export const WAVE_DOWNLOAD_URL =
+  import.meta.env.VITE_WAVE_DOWNLOAD_URL ||
+  'https://github.com/SarhadCodes/LiveWave/releases/download/v7.0.0/Wave.apk';
+
+export const WAVE_SCREENSHOTS = [
+  '/images/products/wave/home.jpg',
+  '/images/products/wave/live-tv.jpg',
+  '/images/products/wave/movies.jpg',
+  '/images/products/wave/series.jpg',
+  '/images/products/wave/music.jpg',
+  '/images/products/wave/now-playing.jpg',
+  '/images/products/wave/settings.jpg',
+] as const;
+
+export const COMPANY_TECH = [
+  'Flutter',
+  'React',
+  'Node.js',
+  'PostgreSQL',
+  'Docker',
+  'FFmpeg',
+  'Cloudflare',
+  'Supabase',
+] as const;
+
+export const CORE_TECH = ['Docker', 'FFmpeg', 'Node.js', 'PostgreSQL', 'React'] as const;
+export const LIVE_WAVE_TECH = ['Flutter', 'ExoPlayer'] as const;
+export const CONTROL_TECH = ['WinUI 3', '.NET', 'C#'] as const;
 
 export const screenshotSrcs = [
   '/screenshots/dashboard.png',

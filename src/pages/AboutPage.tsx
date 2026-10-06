@@ -1,44 +1,56 @@
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { PageHero, Section } from '@/components/site/Section';
+import { PageHero, Section, SectionHeading } from '@/components/site/Section';
+import { TechList } from '@/components/site/TechList';
+import { COMPANY_TECH, teamPhotos } from '@/data/site';
 import { useI18n } from '@/i18n';
+import { usePageTitle } from '@/lib/usePageTitle';
 
 export default function AboutPage() {
   const { t } = useI18n();
+  usePageTitle(`${t.about.title} — KurdLogs`, t.about.description);
 
   return (
     <>
-      <PageHero eyebrow={t.about.eyebrow} title={t.about.title} description={t.about.description} />
+      <PageHero
+        eyebrow={t.about.eyebrow}
+        title={t.about.title}
+        subtitle={t.about.role}
+        description={t.about.description}
+      />
       <Section>
         <div className="grid gap-14 lg:grid-cols-2">
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
             <p>{t.about.p1}</p>
-            <p>{t.about.p2}</p>
-            <p>{t.about.p3}</p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild>
+                <Link to="/project">
+                  {t.about.viewProducts}
+                  <ArrowRight className="rtl:rotate-180" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/wave">{t.about.viewWave}</Link>
+              </Button>
+            </div>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-border">
+          <div className="aspect-square overflow-hidden rounded-2xl border border-border bg-[#a8e000]">
             <img
-              src="/screenshots/monitoring.png"
+              src={teamPhotos[0]}
               alt={t.about.imageAlt}
-              className="w-full object-cover object-top"
+              className="h-full w-full object-cover object-top"
             />
           </div>
         </div>
-
-        <div className="mt-20 grid gap-10 border-t border-border pt-16 sm:grid-cols-3">
-          {t.about.pillars.map((item) => (
-            <div key={item.title}>
-              <h2 className="font-display text-xl font-semibold text-foreground">{item.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16">
-          <Button asChild>
-            <Link to="/team">{t.about.meetTeam}</Link>
-          </Button>
-        </div>
+      </Section>
+      <Section className="border-t border-border bg-card/30">
+        <SectionHeading
+          eyebrow={t.company.techEyebrow}
+          title={t.company.techTitle}
+          description={t.company.techDescription}
+        />
+        <TechList items={[...COMPANY_TECH]} />
       </Section>
     </>
   );

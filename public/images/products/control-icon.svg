@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="KurdLogs Control">
+  <rect width="512" height="512" rx="112" fill="#101114"/>
+  <rect x="40" y="40" width="432" height="432" rx="88" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.12"/>
+  <text x="256" y="300" text-anchor="middle" font-family="Syne, Inter, Arial, sans-serif" font-size="150" font-weight="700" fill="#f3f2ef">KC</text>
+  <rect x="176" y="348" width="160" height="10" rx="5" fill="#f3f2ef" opacity="0.35"/>
+</svg>

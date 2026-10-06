@@ -5,10 +5,10 @@ import { formatMessage, useI18n } from '@/i18n';
 export default function SiteFooter() {
   const { t } = useI18n();
   const footerLinks = [
+    { to: '/', label: t.footer.home },
+    { to: '/project', label: t.footer.project },
     { to: '/about', label: t.footer.about },
-    { to: '/team', label: t.footer.team },
-    { to: '/faq', label: t.footer.faq },
-    { to: '/docs', label: t.footer.docs },
+    { to: '/contact', label: t.footer.contact },
   ];
 
   return (
@@ -17,7 +17,7 @@ export default function SiteFooter() {
         <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-display text-2xl font-bold tracking-tight text-foreground">
-              KurdLogs <span className="font-medium text-muted-foreground">Core</span>
+              KurdLogs
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
               {t.footer.blurb}

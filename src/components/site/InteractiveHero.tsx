@@ -77,14 +77,13 @@ export default function InteractiveHero() {
         <div className="max-w-xl animate-fade-up pointer-events-none lg:max-w-2xl [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
           <p className="font-display text-[3.25rem] font-bold leading-[0.98] tracking-tight text-white sm:text-6xl md:text-7xl">
             KurdLogs
-            <span className="mt-1 block font-semibold text-white/65 sm:mt-2">Core</span>
           </p>
           <p className="mt-5 max-w-md text-[1.05rem] leading-relaxed text-white/75 sm:mt-6 sm:max-w-xl sm:text-xl">
             {t.hero.tagline}
           </p>
           <div className="mt-8 sm:mt-10">
             <Button asChild size="lg">
-              <Link to="/docs">
+              <Link to="/project">
                 {t.hero.cta}
                 <ArrowRight className="rtl:rotate-180" />
               </Link>
