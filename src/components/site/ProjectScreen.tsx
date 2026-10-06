@@ -20,9 +20,11 @@ export type ProjectPreview = {
   imageAlt?: string;
 };
 
-type ProjectCta =
-  | { label: string; to: string; href?: never }
-  | { label: string; href: string; to?: never };
+type ProjectCta = {
+  label: string;
+  to?: string;
+  href?: string;
+};
 
 type ProjectScreenProps = {
   eyebrow: string;
@@ -226,6 +228,8 @@ function ProjectCtaButton({
       </Button>
     );
   }
+
+  if (!cta.to) return null;
 
   return (
     <Button asChild size={size} variant={variant}>
