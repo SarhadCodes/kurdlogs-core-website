@@ -11,6 +11,11 @@ export const PRODUCT_PATHS = ['/wave'] as const;
 export const WAVE_DOWNLOAD_URL =
   import.meta.env.VITE_WAVE_DOWNLOAD_URL ||
   'https://github.com/SarhadCodes/LiveWave/releases/download/v7.0.0/Wave.apk';
+export const WAVE_RELEASE_API_URL =
+  'https://api.github.com/repos/SarhadCodes/LiveWave/releases/tags/v7.0.0';
+export const WAVE_APK_NAME = 'Wave.apk';
+export const WAVE_RELEASES_URL =
+  'https://github.com/SarhadCodes/LiveWave/releases/tag/v7.0.0';
 
 export const WAVE_SCREENSHOTS = [
   '/images/products/wave/home.jpg',

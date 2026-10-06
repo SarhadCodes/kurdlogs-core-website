@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { PageHero, Section } from '@/components/site/Section';
 import { LIVE_WAVE_ICON, WAVE_DOWNLOAD_URL } from '@/data/site';
-import { useI18n } from '@/i18n';
+import { formatMessage, useI18n } from '@/i18n';
 import { usePageTitle } from '@/lib/usePageTitle';
+import { useWaveDownloadCount } from '@/lib/useWaveDownloadCount';
 
 export default function ProjectPage() {
   const { t } = useI18n();
+  const downloads = useWaveDownloadCount();
   usePageTitle(`${t.projectPage.title} — KurdLogs`, t.projectPage.description);
 
   return (
@@ -35,6 +37,13 @@ export default function ProjectPage() {
             <p className="mt-0.5 truncate text-sm text-muted-foreground sm:mt-1">
               {t.company.waveTagline}
             </p>
+            {downloads !== null ? (
+              <p className="mt-1 text-xs text-muted-foreground">
+                {formatMessage(t.wave.downloads, {
+                  count: downloads.toLocaleString(),
+                })}
+              </p>
+            ) : null}
           </div>
 
           <Button asChild className="shrink-0">

@@ -7,9 +7,11 @@ import {
 } from '@/data/site';
 import { useI18n } from '@/i18n';
 import { usePageTitle } from '@/lib/usePageTitle';
+import { useWaveDownloadCount } from '@/lib/useWaveDownloadCount';
 
 export default function WavePage() {
   const { t } = useI18n();
+  const downloads = useWaveDownloadCount();
   usePageTitle(`${t.wave.title} — KurdLogs`, t.wave.description);
 
   const previews = t.wave.shots.map((shot, index) => ({
@@ -18,6 +20,30 @@ export default function WavePage() {
     image: WAVE_SCREENSHOTS[index],
     imageAlt: shot.alt,
   }));
+
+  const meta = [
+    { label: t.projectMeta.status, value: t.wave.status },
+    {
+      label: t.projectMeta.platform,
+      value: t.wave.platform,
+      hint: t.wave.platformHint,
+    },
+    { label: t.projectMeta.size, value: t.wave.size },
+    ...(downloads !== null
+      ? [
+          {
+            label: t.projectMeta.downloads,
+            value: downloads.toLocaleString(),
+          },
+        ]
+      : []),
+    { label: t.projectMeta.developer, value: t.wave.developer },
+    {
+      label: t.projectMeta.stack,
+      value: t.wave.stack,
+      hint: t.wave.stackHint,
+    },
+  ];
 
   return (
     <ProjectScreen
@@ -29,21 +55,7 @@ export default function WavePage() {
       iconLabel="W"
       iconBgClassName="bg-black"
       cta={{ href: WAVE_DOWNLOAD_URL, label: t.wave.get }}
-      meta={[
-        { label: t.projectMeta.status, value: t.wave.status },
-        {
-          label: t.projectMeta.platform,
-          value: t.wave.platform,
-          hint: t.wave.platformHint,
-        },
-        { label: t.projectMeta.size, value: t.wave.size },
-        { label: t.projectMeta.developer, value: t.wave.developer },
-        {
-          label: t.projectMeta.stack,
-          value: t.wave.stack,
-          hint: t.wave.stackHint,
-        },
-      ]}
+      meta={meta}
       previews={previews}
       description={
         <>
