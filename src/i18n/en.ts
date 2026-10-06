@@ -1,8 +1,8 @@
 export const en = {
   meta: {
-    title: 'KurdLogs',
+    title: 'KurdLogs — Wave media player',
     description:
-      'KurdLogs designs and builds software for broadcasting, media, systems, and the ideas that come next.',
+      'KurdLogs builds Wave, a modern Android media player for your own sources — phones and TV.',
   },
   nav: {
     home: 'Home',

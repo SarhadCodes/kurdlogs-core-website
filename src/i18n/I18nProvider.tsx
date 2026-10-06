@@ -66,8 +66,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     root.dir = dir;
     root.classList.toggle('locale-ckb', activeLocale === 'ckb');
     document.title = t.meta.title;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', t.meta.description);
+    const set = (selector: string, content: string) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute('content', content);
+    };
+    set('meta[name="description"]', t.meta.description);
+    set('meta[property="og:title"]', t.meta.title);
+    set('meta[property="og:description"]', t.meta.description);
+    set('meta[name="twitter:title"]', t.meta.title);
+    set('meta[name="twitter:description"]', t.meta.description);
   }, [activeLocale, dir, t.meta.title, t.meta.description]);
 
   const value = useMemo(
