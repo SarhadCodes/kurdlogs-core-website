@@ -9,7 +9,8 @@ export const LIVE_WAVE_ICON = '/images/products/live-wave-icon.png';
 export const CONTROL_ICON = '/images/products/control-icon.svg';
 export const PRODUCT_PATHS = ['/wave'] as const;
 export const WAVE_DOWNLOAD_URL =
-  import.meta.env.VITE_WAVE_DOWNLOAD_URL || '/Wave.apk';
+  import.meta.env.VITE_WAVE_DOWNLOAD_URL ||
+  'https://github.com/SarhadCodes/kurdlogs-core-website/raw/main/downloads/Wave.apk';
 export const WAVE_RELEASE_API_URL =
   'https://api.github.com/repos/SarhadCodes/LiveWave/releases/tags/v7.0.0';
 export const WAVE_APK_NAME = 'Wave.apk';
