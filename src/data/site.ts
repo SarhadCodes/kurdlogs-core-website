@@ -10,12 +10,12 @@ export const CONTROL_ICON = '/images/products/control-icon.svg';
 export const PRODUCT_PATHS = ['/wave'] as const;
 export const WAVE_DOWNLOAD_URL =
   import.meta.env.VITE_WAVE_DOWNLOAD_URL ||
-  'https://github.com/SarhadCodes/kurdlogs-core-website/raw/main/downloads/Wave.apk';
+  'https://github.com/SarhadCodes/kurdlogs-core-website/releases/download/wave-v1.0.1/Wave.apk';
 export const WAVE_RELEASE_API_URL =
-  'https://api.github.com/repos/SarhadCodes/LiveWave/releases/tags/v7.0.0';
+  'https://api.github.com/repos/SarhadCodes/kurdlogs-core-website/releases/tags/wave-v1.0.1';
 export const WAVE_APK_NAME = 'Wave.apk';
 export const WAVE_RELEASES_URL =
-  'https://github.com/SarhadCodes/LiveWave/releases/tag/v7.0.0';
+  'https://github.com/SarhadCodes/kurdlogs-core-website/releases/tag/wave-v1.0.1';
 
 export const WAVE_SCREENSHOTS = [
   '/images/products/wave/home.jpg',
