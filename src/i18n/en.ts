@@ -141,7 +141,7 @@ export const en = {
     status: 'Available',
     platform: 'Android',
     platformHint: 'Phone · TV',
-    size: '73 MB',
+    size: '51 MB',
     developer: 'KurdLogs',
     stack: 'Flutter',
     stackHint: 'ExoPlayer',

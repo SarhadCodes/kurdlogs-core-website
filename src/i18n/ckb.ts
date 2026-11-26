@@ -142,7 +142,7 @@ export const ckb: Messages = {
     status: 'بەردەستە',
     platform: 'ئەندرۆید',
     platformHint: 'مۆبایل · تیڤی',
-    size: '73 MB',
+    size: '51 MB',
     developer: 'کوردلۆگز',
     stack: 'Flutter',
     stackHint: 'ExoPlayer',
